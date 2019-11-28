@@ -26,6 +26,8 @@ import javax.swing.JSpinner;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.border.EtchedBorder;
+import java.awt.Toolkit;
 
 @SuppressWarnings("serial")
 public class RegQueso extends JDialog {
@@ -64,9 +66,10 @@ public class RegQueso extends JDialog {
 	 * Create the dialog.
 	 */
 	public RegQueso() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(RegQueso.class.getResource("/recursos/queso.png")));
 		setResizable(false);
 		setTitle("Registro de Queso");
-		setBounds(100, 100, 553, 303);
+		setBounds(100, 100, 541, 303);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -74,13 +77,15 @@ public class RegQueso extends JDialog {
 		setLocationRelativeTo(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Datos Queso", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel.setForeground(Color.BLACK);
+		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Datos Queso", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLACK));
 		panel.setBounds(10, 11, 517, 70);
 		contentPanel.add(panel);
 		panel.setLayout(null);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new TitledBorder(null, "Tipo de Queso", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_1.setForeground(Color.BLACK);
+		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Tipo de Queso", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLACK));
 		panel_1.setBounds(10, 92, 517, 65);
 		contentPanel.add(panel_1);
 		panel_1.setLayout(null);
@@ -169,19 +174,20 @@ public class RegQueso extends JDialog {
 		group.add(rdbtnCilindroHueco);
 		
 		panel_esferico = new JPanel();
-		panel_esferico.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Informacion Especifica - Esferico", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel_esferico.setForeground(Color.BLACK);
+		panel_esferico.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Informacion Especifica - Esferico", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLACK));
 		panel_esferico.setBounds(10, 162, 517, 66);
 		contentPanel.add(panel_esferico);
 		
 		panel_cilindrico = new JPanel();
-		panel_cilindrico.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Informacion Especifica - Cilindrico", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel_cilindrico.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Informacion Especifica - Cilindrico", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLACK));
 		panel_cilindrico.setBounds(10, 162, 517, 66);
 		contentPanel.add(panel_cilindrico);
 		panel_cilindrico.setLayout(null);
 		panel_cilindrico.setVisible(false);
 		
 		panel_cilindricoHueco = new JPanel();
-		panel_cilindricoHueco.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Informacion Especifica - CilindricoHueco", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel_cilindricoHueco.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Informacion Especifica - CilindricoHueco", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLACK));
 		panel_cilindricoHueco.setBounds(10, 162, 517, 66);
 		contentPanel.add(panel_cilindricoHueco);
 		panel_cilindricoHueco.setLayout(null);

@@ -9,6 +9,7 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
+import javax.swing.text.MaskFormatter;
 
 import logico.Cilindro;
 import logico.CilindroHueco;
@@ -32,6 +33,8 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.border.EtchedBorder;
+import javax.swing.JFormattedTextField;
+import javax.swing.ImageIcon;
 
 public class RegFacturas extends JDialog {
 
@@ -39,7 +42,6 @@ public class RegFacturas extends JDialog {
 	private JTextField txt_id;
 	private JTextField txt_name;
 	private JTextField txt_address;
-	private JTextField txt_phone;
 	private JList list_main;
 	private JList list_second;
 	DefaultListModel<String> dbQuesos = new DefaultListModel<>();
@@ -47,6 +49,18 @@ public class RegFacturas extends JDialog {
 	private JTextField total;
 	private JLabel lblTotal;
 	private Cliente users= null;
+	private JFormattedTextField ftxtTel;
+	
+	private MaskFormatter mascaraTel() {
+		MaskFormatter mask = new MaskFormatter();
+		try {
+			mask = new MaskFormatter("(###)-###-####");
+			mask.setPlaceholderCharacter('_');
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		return mask;
+	}
 	/**
 	 * Launch the application.
 	 */
@@ -64,6 +78,8 @@ public class RegFacturas extends JDialog {
 	 * Create the dialog.
 	 */
 	public RegFacturas() {
+		setResizable(false);
+		setTitle("Facturaci\u00F3n");
 		setBounds(100, 100, 650, 500);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -99,7 +115,7 @@ public class RegFacturas extends JDialog {
 			}
 			{
 				JLabel lblDireccion = new JLabel("Direccion: ");
-				lblDireccion.setBounds(10, 90, 85, 14);
+				lblDireccion.setBounds(10, 90, 68, 14);
 				panel.add(lblDireccion);
 			}
 			{
@@ -124,8 +140,8 @@ public class RegFacturas extends JDialog {
 								txt_name.setText(user.getName());
 								txt_address.setEnabled(false);
 								txt_address.setText(user.getAddress());
-								txt_phone.setEnabled(false);
-								txt_phone.setText(user.getPhone());
+								ftxtTel.setEnabled(false);
+								ftxtTel.setText(user.getPhone());
 								users = user;
 							}
 							else {
@@ -143,13 +159,8 @@ public class RegFacturas extends JDialog {
 			panel.add(btnBuscar);
 			
 			JLabel lblTelefono = new JLabel("Telefono:");
-			lblTelefono.setBounds(10, 121, 85, 14);
+			lblTelefono.setBounds(10, 121, 54, 14);
 			panel.add(lblTelefono);
-			
-			txt_phone = new JTextField();
-			txt_phone.setBounds(69, 114, 226, 20);
-			panel.add(txt_phone);
-			txt_phone.setColumns(10);
 			
 			JPanel panel_1 = new JPanel();
 			panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Quesos", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLACK));
@@ -238,9 +249,20 @@ public class RegFacturas extends JDialog {
 			panel_1.add(lblTotal);
 			
 			total = new JTextField();
+			total.setEditable(false);
 			total.setBounds(461, 225, 113, 20);
 			panel_1.add(total);
 			total.setColumns(10);
+			
+			ftxtTel = new JFormattedTextField(mascaraTel());
+			ftxtTel.setBounds(69, 119, 226, 19);
+			panel.add(ftxtTel);
+			{
+				JLabel label = new JLabel("");
+				label.setIcon(new ImageIcon(RegFacturas.class.getResource("/recursos/queso128.png")));
+				label.setBounds(481, 13, 133, 125);
+				panel.add(label);
+			}
 		}
 		{
 			JPanel buttonPane = new JPanel();

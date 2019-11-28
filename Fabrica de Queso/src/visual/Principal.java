@@ -59,7 +59,7 @@ public class Principal extends JFrame {
 		menuBar.add(mnCliente);
 		
 		JMenuItem mntmNuevo = new JMenuItem("Nuevo");
-		mntmNuevo.setIcon(new ImageIcon(Principal.class.getResource("/recursos/archivo.png")));
+		mntmNuevo.setIcon(new ImageIcon(Principal.class.getResource("/recursos/archivo32.png")));
 		mntmNuevo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				RegCliente reg = new RegCliente();
@@ -74,7 +74,7 @@ public class Principal extends JFrame {
 		menuBar.add(mnFacturas);
 		
 		JMenuItem mntmNuevo_1 = new JMenuItem("Nuevo");
-		mntmNuevo_1.setIcon(new ImageIcon(Principal.class.getResource("/recursos/archivo.png")));
+		mntmNuevo_1.setIcon(new ImageIcon(Principal.class.getResource("/recursos/archivo32.png")));
 		mntmNuevo_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				RegFacturas factura = new RegFacturas();
@@ -89,7 +89,7 @@ public class Principal extends JFrame {
 		menuBar.add(mnQuesos);
 		
 		JMenuItem mntmNuevo_2 = new JMenuItem("Nuevo");
-		mntmNuevo_2.setIcon(new ImageIcon(Principal.class.getResource("/recursos/archivo.png")));
+		mntmNuevo_2.setIcon(new ImageIcon(Principal.class.getResource("/recursos/archivo32.png")));
 		mntmNuevo_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				RegQueso factura = new RegQueso();
