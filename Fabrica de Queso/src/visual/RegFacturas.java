@@ -27,6 +27,7 @@ import javax.swing.border.LineBorder;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.border.EtchedBorder;
 
 public class RegFacturas extends JDialog {
 
@@ -67,7 +68,7 @@ public class RegFacturas extends JDialog {
 		setLocationRelativeTo(null);
 		{
 			JPanel panel = new JPanel();
-			panel.setBorder(new TitledBorder(null, "Informacion de Factura", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Informacion de Factura", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLACK));
 			contentPanel.add(panel, BorderLayout.CENTER);
 			panel.setLayout(null);
 			{
@@ -77,7 +78,7 @@ public class RegFacturas extends JDialog {
 			}
 			{
 				txt_id = new JTextField();
-				txt_id.setBounds(59, 27, 133, 20);
+				txt_id.setBounds(69, 28, 133, 20);
 				panel.add(txt_id);
 				txt_id.setColumns(10);
 			}
@@ -134,7 +135,7 @@ public class RegFacturas extends JDialog {
 					}
 				}
 			});
-			btnBuscar.setBounds(196, 26, 89, 23);
+			btnBuscar.setBounds(206, 26, 89, 23);
 			panel.add(btnBuscar);
 			
 			JLabel lblTelefono = new JLabel("Telefono:");
@@ -147,7 +148,7 @@ public class RegFacturas extends JDialog {
 			txt_phone.setColumns(10);
 			
 			JPanel panel_1 = new JPanel();
-			panel_1.setBorder(new TitledBorder(null, "Quesos", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Quesos", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLACK));
 			panel_1.setBounds(10, 146, 604, 253);
 			panel.add(panel_1);
 			panel_1.setLayout(null);
@@ -223,17 +224,17 @@ public class RegFacturas extends JDialog {
 				panel_1.add(btn_delete);
 			}
 			{
-				JLabel lblNewLabel_1 = new JLabel("Carrito");
+				JLabel lblNewLabel_1 = new JLabel("Carrito:");
 				lblNewLabel_1.setBounds(464, 11, 46, 14);
 				panel_1.add(lblNewLabel_1);
 			}
 			
 			lblTotal= new JLabel("Total: ");
-			lblTotal.setBounds(350, 228, 46, 14);
+			lblTotal.setBounds(401, 227, 46, 14);
 			panel_1.add(lblTotal);
 			
 			total = new JTextField();
-			total.setBounds(461, 225, 86, 20);
+			total.setBounds(461, 225, 113, 20);
 			panel_1.add(total);
 			total.setColumns(10);
 		}
