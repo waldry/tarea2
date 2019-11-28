@@ -26,6 +26,7 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class RegFacturas extends JDialog {
@@ -251,14 +252,19 @@ public class RegFacturas extends JDialog {
 						}
 						else {
 							DefaultListModel<String> carrito = ((DefaultListModel<String>)list_second.getModel());
+							ArrayList<Queso> items = new ArrayList<Queso>();
 							for (int i = 0; i < carrito.getSize(); i++) {
 								String s = (String) carrito.getElementAt(i);
 								String[] separador1 = s.split(",", 2);
 								String codigo = separador1[0];
+								for (Queso queso : items) {
+									
+								}
 								Empresa.getInstance().deleteQueso(codigo);
 								updateQueso();
-								JOptionPane.showMessageDialog(null, "Compra realizada", "Notificacion", JOptionPane.INFORMATION_MESSAGE);
+								
 							}
+							JOptionPane.showMessageDialog(null, "Compra realizada", "Notificacion", JOptionPane.INFORMATION_MESSAGE);
 						}
 					}
 
@@ -281,7 +287,6 @@ public class RegFacturas extends JDialog {
 		}
 		
 	}
-
 	protected void updateQueso() {
 		dbQuesos.clear();
 		for (Queso  aux : Empresa.getInstance().getCheese()) {
