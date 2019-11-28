@@ -259,14 +259,16 @@ public class RegFacturas extends JDialog {
 								String s = (String) carrito.getElementAt(i);
 								String[] separador1 = s.split(",", 2);
 								String codigo = separador1[0];
-								for (Queso queso : items) {
-									
-								}
+								items.add(Empresa.getInstance().quesoByCode(codigo));
 								Empresa.getInstance().deleteQueso(codigo);
 								updateQueso();
 								
+								
 							}
+							Factura factToAdd = new Factura(users, items, "1");
+							Empresa.getInstance().addFactura(factToAdd);
 							JOptionPane.showMessageDialog(null, "Compra realizada", "Notificacion", JOptionPane.INFORMATION_MESSAGE);
+							
 						}
 					}
 

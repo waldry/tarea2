@@ -111,6 +111,14 @@ public class Empresa {
 		}
 		return null;
 	}
+	public Queso quesoByCode(String code) {
+		for (Queso cheeses : cheese) {
+			if (cheeses.getId().equalsIgnoreCase(code)) {
+				return cheeses;
+			}
+		}
+		return null;
+	}
 	public void quesoByTipo() {
         int cant = 0, cantEsf = 0, cantC = 0, cantCH = 0;
         for (Queso quesoAux: cheese) {
