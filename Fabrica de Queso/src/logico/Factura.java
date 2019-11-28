@@ -38,4 +38,9 @@ public class Factura {
 		}
 		return total;
 	}
+	public float facturarByEach(Queso item) {
+		float total = 0;
+			total = total + item.costoTotal();
+		return total;
+	}
 }

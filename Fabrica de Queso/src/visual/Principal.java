@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 
 import logico.Cliente;
 import logico.Empresa;
+import server.Server;
 
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
@@ -19,6 +20,7 @@ import javax.swing.ImageIcon;
 
 public class Principal extends JFrame {
 
+	private static Server s;
 	private JPanel contentPane;
 
 	/**
@@ -29,6 +31,8 @@ public class Principal extends JFrame {
 			public void run() {
 				try {
 					Principal frame = new Principal();
+					s = new Server("Ejecutando el Backend");
+					s.start();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
