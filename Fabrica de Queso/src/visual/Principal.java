@@ -21,7 +21,7 @@ import java.awt.Color;
 
 public class Principal extends JFrame {
 
-	private static Server s;
+//	private static Server s;
 	private JPanel contentPane;
 
 	/**
@@ -32,8 +32,8 @@ public class Principal extends JFrame {
 			public void run() {
 				try {
 					Principal frame = new Principal();
-					s = new Server("Ejecutando el Backend");
-					s.start();
+//					s = new Server("Ejecutando el Backend");
+//					s.start();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
