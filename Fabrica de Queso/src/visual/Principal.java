@@ -15,6 +15,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
 
 public class Principal extends JFrame {
 
@@ -43,6 +44,7 @@ public class Principal extends JFrame {
 	public Principal() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
+		setLocationRelativeTo(null);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -61,6 +63,7 @@ public class Principal extends JFrame {
 		mnCliente.add(mntmNuevo);
 		
 		JMenu mnFacturas = new JMenu("Facturas");
+		mnFacturas.setIcon(new ImageIcon(Principal.class.getResource("/visual/fact.png")));
 		menuBar.add(mnFacturas);
 		
 		JMenuItem mntmNuevo_1 = new JMenuItem("Nuevo");
@@ -74,6 +77,7 @@ public class Principal extends JFrame {
 		mnFacturas.add(mntmNuevo_1);
 		
 		JMenu mnQuesos = new JMenu("Quesos");
+		mnQuesos.setIcon(new ImageIcon(Principal.class.getResource("/visual/queso.png")));
 		menuBar.add(mnQuesos);
 		
 		JMenuItem mntmNuevo_2 = new JMenuItem("Nuevo");
