@@ -58,6 +58,7 @@ public class RegCliente extends JDialog {
 	 * Create the dialog.
 	 */
 	public RegCliente() {
+		setBackground(new Color(211, 211, 211));
 		setIconImage(Toolkit.getDefaultToolkit().getImage(RegCliente.class.getResource("/recursos/clientes.png")));
 		setResizable(false);
 		setTitle("Registro de Cliente");
@@ -69,6 +70,7 @@ public class RegCliente extends JDialog {
 		setLocationRelativeTo(null);
 		{
 			JPanel panel = new JPanel();
+			panel.setBackground(new Color(211, 211, 211));
 			panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Registro Nuevo Cliente", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLACK));
 			contentPanel.add(panel, BorderLayout.CENTER);
 			panel.setLayout(null);
@@ -112,6 +114,7 @@ public class RegCliente extends JDialog {
 		}
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(new Color(211, 211, 211));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{

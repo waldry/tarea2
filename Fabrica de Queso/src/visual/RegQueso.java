@@ -71,12 +71,14 @@ public class RegQueso extends JDialog {
 		setTitle("Registro de Queso");
 		setBounds(100, 100, 541, 303);
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(new Color(211, 211, 211));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		setLocationRelativeTo(null);
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(new Color(211, 211, 211));
 		panel.setForeground(Color.BLACK);
 		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Datos Queso", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLACK));
 		panel.setBounds(10, 11, 517, 70);
@@ -84,6 +86,7 @@ public class RegQueso extends JDialog {
 		panel.setLayout(null);
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(211, 211, 211));
 		panel_1.setForeground(Color.BLACK);
 		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Tipo de Queso", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLACK));
 		panel_1.setBounds(10, 92, 517, 65);
@@ -92,6 +95,7 @@ public class RegQueso extends JDialog {
 		
 		
 		rdbtnEsferico = new JRadioButton("Esferico");
+		rdbtnEsferico.setBackground(new Color(211, 211, 211));
 		rdbtnEsferico.setSelected(true);
 		rdbtnEsferico.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -141,6 +145,7 @@ public class RegQueso extends JDialog {
 		
 		
 		rdbtnCilindrico = new JRadioButton("Cilindrico");
+		rdbtnCilindrico.setBackground(new Color(211, 211, 211));
 		rdbtnCilindrico.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				rdbtnCilindrico.setSelected(true);
@@ -155,6 +160,7 @@ public class RegQueso extends JDialog {
 		panel_1.add(rdbtnCilindrico);
 		
 		rdbtnCilindroHueco = new JRadioButton("CilindricoHueco");
+		rdbtnCilindroHueco.setBackground(new Color(211, 211, 211));
 		rdbtnCilindroHueco.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				rdbtnCilindroHueco.setSelected(true);
@@ -174,12 +180,14 @@ public class RegQueso extends JDialog {
 		group.add(rdbtnCilindroHueco);
 		
 		panel_esferico = new JPanel();
+		panel_esferico.setBackground(new Color(211, 211, 211));
 		panel_esferico.setForeground(Color.BLACK);
 		panel_esferico.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Informacion Especifica - Esferico", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLACK));
 		panel_esferico.setBounds(10, 162, 517, 66);
 		contentPanel.add(panel_esferico);
 		
 		panel_cilindrico = new JPanel();
+		panel_cilindrico.setBackground(new Color(211, 211, 211));
 		panel_cilindrico.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Informacion Especifica - Cilindrico", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLACK));
 		panel_cilindrico.setBounds(10, 162, 517, 66);
 		contentPanel.add(panel_cilindrico);
@@ -187,6 +195,7 @@ public class RegQueso extends JDialog {
 		panel_cilindrico.setVisible(false);
 		
 		panel_cilindricoHueco = new JPanel();
+		panel_cilindricoHueco.setBackground(new Color(211, 211, 211));
 		panel_cilindricoHueco.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Informacion Especifica - CilindricoHueco", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLACK));
 		panel_cilindricoHueco.setBounds(10, 162, 517, 66);
 		contentPanel.add(panel_cilindricoHueco);
@@ -249,6 +258,7 @@ public class RegQueso extends JDialog {
 		panel_esferico.add(lblRadio);
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(new Color(211, 211, 211));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{

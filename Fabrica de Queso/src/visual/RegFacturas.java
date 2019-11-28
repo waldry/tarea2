@@ -35,6 +35,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.border.EtchedBorder;
 import javax.swing.JFormattedTextField;
 import javax.swing.ImageIcon;
+import java.awt.Toolkit;
 
 public class RegFacturas extends JDialog {
 
@@ -78,6 +79,7 @@ public class RegFacturas extends JDialog {
 	 * Create the dialog.
 	 */
 	public RegFacturas() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(RegFacturas.class.getResource("/recursos/expediente.png")));
 		setResizable(false);
 		setTitle("Facturaci\u00F3n");
 		setBounds(100, 100, 650, 500);
@@ -88,6 +90,7 @@ public class RegFacturas extends JDialog {
 		setLocationRelativeTo(null);
 		{
 			JPanel panel = new JPanel();
+			panel.setBackground(new Color(211, 211, 211));
 			panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Informacion de Factura", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLACK));
 			contentPanel.add(panel, BorderLayout.CENTER);
 			panel.setLayout(null);
@@ -163,6 +166,7 @@ public class RegFacturas extends JDialog {
 			panel.add(lblTelefono);
 			
 			JPanel panel_1 = new JPanel();
+			panel_1.setBackground(new Color(211, 211, 211));
 			panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Quesos", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLACK));
 			panel_1.setBounds(10, 146, 604, 253);
 			panel.add(panel_1);
@@ -266,6 +270,7 @@ public class RegFacturas extends JDialog {
 		}
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(new Color(211, 211, 211));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
