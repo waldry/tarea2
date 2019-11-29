@@ -325,7 +325,7 @@ public class RegQueso extends JDialog {
 					}
 
 					private void clean() {
-						txt_id.setText(String.valueOf(Empresa.getInstance().getGen_cheese()));;
+						txt_id.setText(String.valueOf(Empresa.getInstance().getGen_cheese()+1));
 						txt_p_base.setText("");
 						txt_p_unitario.setText("");
 						spn_largo_cilindrico.setValue(0);
