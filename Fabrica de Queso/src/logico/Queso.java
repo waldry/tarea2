@@ -1,6 +1,12 @@
 package logico;
 
-public abstract class Queso {
+import java.io.Serializable;
+
+public abstract class Queso implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected float p_base;
 	protected float p_unitario;
 	protected String id;

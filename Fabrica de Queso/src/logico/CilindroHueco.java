@@ -1,8 +1,14 @@
 package logico;
 
-public class CilindroHueco extends Cilindro{
+import java.io.Serializable;
+
+public class CilindroHueco extends Cilindro implements Serializable{
 	
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private float radio_int;
 
 	public CilindroHueco(String id,float p_base, float p_unitario,float longitud, float radio_ext,float radio_int, String tipo) {

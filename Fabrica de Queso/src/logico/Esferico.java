@@ -1,6 +1,12 @@
 package logico;
 
-public class Esferico extends Queso {
+import java.io.Serializable;
+
+public class Esferico extends Queso implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private float radio;
 	
 	public Esferico(String id,float p_base, float p_unitario, float radio, String tipo) {
