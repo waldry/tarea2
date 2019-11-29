@@ -32,42 +32,43 @@ public class Server extends Thread{
 		try {
 		System.out.println("LocalHost" + InetAddress.getLocalHost().toString());
 			
-		} catch (Exception e) {
+		} catch (UnknownHostException e) {
 			System.out.println("Hubo un error al intentar acceder a la ip local del equipo" + e);
 		}
 		ServerSocket socket = null;
 		try {
 			socket = new ServerSocket(3000);
-		} catch (Exception e) {
+		} catch (IOException e) {
 			System.out.println("El puerto: "+ socket+ "Esta ocupado.");
 			System.exit(1);
 		}
-		String entrada = "";
-		try {
-			Socket sock = socket.accept();
-			BufferedReader lector = new BufferedReader(new InputStreamReader(sock.getInputStream()));
-			String currentLine;
-			while ((currentLine = lector.readLine()) != null) {
-				entrada += currentLine + "\n";
-				if(firstLine) {
-					titulo = entrada.replace("ID: ","");
-					titulo = titulo.replace("\n", "");
-					firstLine = false;
-					
+		while(true) {
+			String entrada = "";
+			try {
+				Socket sock = socket.accept();
+				BufferedReader lector = new BufferedReader(new InputStreamReader(sock.getInputStream()));
+				String currentLine;
+				while ((currentLine = lector.readLine()) != null) {
+					entrada += currentLine + "\n";
+					if(firstLine) {
+						titulo = entrada.replace("ID: ","");
+						titulo = titulo.replace("\n", "");
+						firstLine = false;
+					}
+					//System.out.println(currentLine);
 				}
-				//System.out.println(currentLine);
+				
+				firstLine = true;
+				salida.add(entrada);
+				//dos.writeBytes("Recibido" + 'n');		
+				if(sock.isInputShutdown() && sock.isOutputShutdown()) {
+					//dos.close();
+					sock.close();
+					lector.close();	
+				}
+			} catch (Exception e) {
+				System.out.println("Hubo un maldito error");
 			}
-			
-			firstLine = true;
-			salida.add(entrada);
-			//dos.writeBytes("Recibido" + 'n');		
-			if(sock.isInputShutdown() && sock.isOutputShutdown()) {
-				//dos.close();
-				sock.close();
-				lector.close();	
-			}
-		} catch (Exception e) {
-			System.out.println("Hubo un maldito error");
 		}
 		
 	}

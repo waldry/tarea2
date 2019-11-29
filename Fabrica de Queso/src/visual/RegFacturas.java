@@ -298,7 +298,7 @@ public class RegFacturas extends JDialog {
 							}
 							Factura factToAdd = new Factura(users, items, "1");
 							Empresa.getInstance().addFactura(factToAdd);
-//							server(factToAdd);
+							server(factToAdd);
 							JOptionPane.showMessageDialog(null, "Compra realizada", "Notificacion", JOptionPane.INFORMATION_MESSAGE);
 							
 						}
@@ -323,36 +323,36 @@ public class RegFacturas extends JDialog {
 		}
 		
 	}
-//	protected void server(Factura factToAdd) {
-//		int port = 3000;
-//		Socket sfd = null;
-//		DataOutputStream salida = null;
-//		String str = "";
-//		String col_ID = "ID: " + factToAdd.getCod_fact();
-//		String col_cliente = "Nombre: " + factToAdd.getP().getName();
-//		String col_monto = "Monto: " + factToAdd.facturar(factToAdd.getItem());
-//		String cols = col_ID + "\n" + col_cliente + "\n" + col_monto + "\n";
-//		for (Queso cheese : factToAdd.getItem()) {
-//			cols += cheese.getId() + "@@" + cheese.getTipo() + "@@" +Float.toString(factToAdd.facturarByEach(cheese));
-//		}
-//		try {
-//			sfd = new Socket("127.0.0.1", port);
-//			salida = new DataOutputStream(sfd.getOutputStream());
-//			salida.writeBytes(cols+"n");
-//			if (sfd.isInputShutdown() && sfd.isOutputShutdown()) {
-//				sfd.close();
-//			}
-//		} catch (Exception e) {
-//			System.err.format("Hubo un error inesperado.", e);
-//		}
-//		try {
-//			if (sfd != null) {
-//				sfd.close();
-//			}
-//		} catch (Exception ioe) {
-//			System.err.format("Hubo un error inesperado.", ioe);
-//		}
-//	}
+	protected void server(Factura factToAdd) {
+		int port = 3000;
+		Socket sfd = null;
+		DataOutputStream salida = null;
+		String str = "";
+		String col_ID = "ID: " + factToAdd.getCod_fact();
+		String col_cliente = "Nombre: " + factToAdd.getP().getName();
+		String col_monto = "Monto: " + factToAdd.facturar(factToAdd.getItem());
+		String cols = col_ID + "\n" + col_cliente + "\n" + col_monto + "\n";
+		for (Queso cheese : factToAdd.getItem()) {
+			cols += cheese.getId() + "@@" + cheese.getTipo() + "@@" +Float.toString(factToAdd.facturarByEach(cheese));
+		}
+		try {
+			sfd = new Socket("127.0.0.1", port);
+			salida = new DataOutputStream(sfd.getOutputStream());
+			salida.writeBytes(cols+"n");
+			if (sfd.isInputShutdown() && sfd.isOutputShutdown()) {
+				sfd.close();
+			}
+		} catch (Exception e) {
+			System.err.format("Hubo un error inesperado.", e);
+		}
+		try {
+			if (sfd != null) {
+				sfd.close();
+			}
+		} catch (Exception ioe) {
+			System.err.format("Hubo un error inesperado.", ioe);
+		}
+	}
 
 	protected void updateQueso() {
 		dbQuesos.clear();

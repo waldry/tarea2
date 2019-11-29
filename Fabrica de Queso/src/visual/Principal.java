@@ -6,6 +6,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import logico.Cliente;
 import logico.Empresa;
@@ -15,14 +16,23 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import java.awt.event.ActionListener;
+import java.awt.image.ImagingOpException;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import java.awt.Color;
+import java.awt.Dimension;
 
 public class Principal extends JFrame {
 
 //	private static Server s;
 	private JPanel contentPane;
+	private Dimension dim;
 
 	/**
 	 * Launch the application.
@@ -30,6 +40,34 @@ public class Principal extends JFrame {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
+				FileInputStream empQuesos;
+				FileOutputStream empQuesos2;
+				ObjectInputStream empQuesosRead;
+				ObjectOutputStream empQuesosWrite;
+				try {
+					empQuesos = new FileInputStream("quesos.dat");
+					empQuesosRead = new ObjectInputStream(empQuesos);
+					Empresa temp = (Empresa)empQuesosRead.readObject();
+					empQuesos.close();
+					empQuesosRead.close();
+				} catch(FileNotFoundException e) {
+					try {
+						empQuesos2 = new FileOutputStream("quesos.dat");
+						empQuesosWrite = new ObjectOutputStream(empQuesos2);
+						empQuesosWrite.writeObject(Empresa.getInstance());
+						empQuesos2.close();
+						empQuesosWrite.close();
+					} catch(FileNotFoundException e1) {
+					} catch(IOException e1) {
+					}
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
 				try {
 					Principal frame = new Principal();
 //					s = new Server("Ejecutando el Backend");
@@ -49,7 +87,8 @@ public class Principal extends JFrame {
 	public Principal() {
 		setTitle("Fabrica de Quesos");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
+		dim = super.getToolkit().getScreenSize();
+		super.setSize(dim.width, dim.height-100);
 		setLocationRelativeTo(null);
 		
 		JMenuBar menuBar = new JMenuBar();
