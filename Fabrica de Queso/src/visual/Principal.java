@@ -30,7 +30,7 @@ import java.awt.Dimension;
 
 public class Principal extends JFrame {
 
-//	private static Server s;
+	private static Server s;
 	private JPanel contentPane;
 	private Dimension dim;
 
@@ -47,7 +47,6 @@ public class Principal extends JFrame {
 				try {
 					empQuesos = new FileInputStream("quesos.dat");
 					empQuesosRead = new ObjectInputStream(empQuesos);
-					Empresa temp = (Empresa)empQuesosRead.readObject();
 					empQuesos.close();
 					empQuesosRead.close();
 				} catch(FileNotFoundException e) {
@@ -63,15 +62,12 @@ public class Principal extends JFrame {
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
 				}
 				
 				try {
 					Principal frame = new Principal();
-//					s = new Server("Ejecutando el Backend");
-//					s.start();
+					s = new Server("Ejecutando el Backend");
+					s.start();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
