@@ -30,6 +30,10 @@ import java.awt.Dimension;
 
 public class Principal extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static Server s;
 	private JPanel contentPane;
 	private Dimension dim;
@@ -40,6 +44,8 @@ public class Principal extends JFrame {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
+				Empresa.getInstance().loadInitData(Empresa.getEmp());
+				Empresa.getInstance().saveInitData(Empresa.getEmp());
 				try {
 					Principal frame = new Principal();
 					s = new Server("Ejecutando el Backend");

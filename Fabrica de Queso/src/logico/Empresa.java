@@ -23,7 +23,7 @@ public class Empresa implements Serializable{
 	private static int gen_cheese = 1;
 	private static int gen_user = 1;
 	
-	public Empresa() {
+	private Empresa() {
 		super();
 		this.cheese = new ArrayList<Queso>();
 		this.fact = new ArrayList<Factura>();
@@ -175,7 +175,7 @@ public class Empresa implements Serializable{
             fileObjectInput = new ObjectInputStream(fileInput);
  
             Empresa cheese = (Empresa) fileObjectInput.readObject();
-//          Empresa.setCheeseCompany(cheese);
+            Empresa.setEmp(cheese);
             fileInput.close();
             fileObjectInput.close();
  
@@ -188,8 +188,8 @@ public class Empresa implements Serializable{
         }
  
     }
- 
-    // Para guardar los datos de la clase controladora.
+
+	// Para guardar los datos de la clase controladora.
     public void saveInitData(Empresa queso) {
        
         File file = new File("CheeseData.dat");
@@ -214,7 +214,14 @@ public class Empresa implements Serializable{
                 e.printStackTrace();
             }
         }
- 
- 
     }
+
+	public static Empresa getEmp() {
+		return emp;
+	}
+
+	public static void setEmp(Empresa emp) {
+		Empresa.emp = emp;
+	}
+    
 }

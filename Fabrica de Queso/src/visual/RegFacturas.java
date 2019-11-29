@@ -39,6 +39,10 @@ import java.awt.Toolkit;
 
 public class RegFacturas extends JDialog {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JTextField txt_id;
 	private JTextField txt_name;
