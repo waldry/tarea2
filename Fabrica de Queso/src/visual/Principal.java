@@ -40,30 +40,6 @@ public class Principal extends JFrame {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				FileInputStream empQuesos;
-				FileOutputStream empQuesos2;
-				ObjectInputStream empQuesosRead;
-				ObjectOutputStream empQuesosWrite;
-				try {
-					empQuesos = new FileInputStream("quesos.dat");
-					empQuesosRead = new ObjectInputStream(empQuesos);
-					empQuesos.close();
-					empQuesosRead.close();
-				} catch(FileNotFoundException e) {
-					try {
-						empQuesos2 = new FileOutputStream("quesos.dat");
-						empQuesosWrite = new ObjectOutputStream(empQuesos2);
-						empQuesosWrite.writeObject(Empresa.getInstance());
-						empQuesos2.close();
-						empQuesosWrite.close();
-					} catch(FileNotFoundException e1) {
-					} catch(IOException e1) {
-					}
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				
 				try {
 					Principal frame = new Principal();
 					s = new Server("Ejecutando el Backend");

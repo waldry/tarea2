@@ -1,5 +1,12 @@
 package logico;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 public class Empresa {
@@ -151,5 +158,58 @@ public class Empresa {
             }
         }
         return max;
+    }
+	 // Para cargar los datos de la clase controladora.
+    public void loadInitData(Empresa queseria) {
+ 
+        File file = new File("CheeseData.dat");
+        FileInputStream fileInput;
+        ObjectInputStream fileObjectInput;
+        try {
+            fileInput = new FileInputStream (file);
+            fileObjectInput = new ObjectInputStream(fileInput);
+ 
+            Empresa cheese = (Empresa) fileObjectInput.readObject();
+//          Empresa.setCheeseCompany(cheese);
+            fileInput.close();
+            fileObjectInput.close();
+ 
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+ 
+    }
+ 
+    // Para guardar los datos de la clase controladora.
+    public void saveInitData(Empresa queso) {
+       
+        File file = new File("CheeseData.dat");
+        FileOutputStream fileOutput;
+        ObjectOutputStream fileObjectOutput = null;
+ 
+        try {
+            fileOutput = new FileOutputStream(file);
+            fileObjectOutput = new ObjectOutputStream(fileOutput);
+            fileObjectOutput.writeObject(queso);
+            fileOutput.close();
+            fileObjectOutput.close();
+ 
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                fileObjectOutput.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+ 
+ 
     }
 }
