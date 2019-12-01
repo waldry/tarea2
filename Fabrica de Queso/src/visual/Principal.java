@@ -31,6 +31,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.Toolkit;
 
 public class Principal extends JFrame {
 
@@ -80,6 +81,8 @@ public class Principal extends JFrame {
 	 * @param emp 
 	 */
 	public Principal() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Principal.class.getResource("/recursos/quesito.png")));
+		setResizable(false);
 		setTitle("Fabrica de Quesos");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		addWindowListener(new WindowAdapter() {

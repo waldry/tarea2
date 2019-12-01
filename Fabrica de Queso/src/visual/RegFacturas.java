@@ -164,7 +164,7 @@ public class RegFacturas extends JDialog {
 								ftxtTel.setText(user.getPhone());
 								users = user;
 							}
-							else {
+							if(!txt_id.getText().equalsIgnoreCase(user.getId_cliente()) && user==null){
 								JOptionPane.showMessageDialog(null, "El cliente no existe. Registrelo", "Notificacion", JOptionPane.INFORMATION_MESSAGE);
 								RegCliente newUser = new RegCliente();
 								newUser.setModal(true);
