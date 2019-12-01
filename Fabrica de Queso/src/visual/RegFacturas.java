@@ -11,6 +11,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.text.MaskFormatter;
 
+
 import logico.Cilindro;
 import logico.CilindroHueco;
 import logico.Cliente;
@@ -18,6 +19,7 @@ import logico.Empresa;
 import logico.Esferico;
 import logico.Factura;
 import logico.Queso;
+import server.Server;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -28,7 +30,13 @@ import javax.swing.border.LineBorder;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
@@ -55,6 +63,10 @@ public class RegFacturas extends JDialog {
 	private JLabel lblTotal;
 	private Cliente users= null;
 	private JFormattedTextField ftxtTel;
+	private String totalito;
+	private static Socket soc;
+	private static DataOutputStream salida;
+
 	
 	private MaskFormatter mascaraTel() {
 		MaskFormatter mask = new MaskFormatter();
@@ -77,6 +89,7 @@ public class RegFacturas extends JDialog {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 	}
 
 	/**
@@ -208,6 +221,7 @@ public class RegFacturas extends JDialog {
 								String second_p = separador[1];
 								aux =aux+ Float.parseFloat(second_p);
 								total.setText(String.valueOf(aux));
+								totalito = String.valueOf(aux);
 							}
 						}
 					}
@@ -234,6 +248,7 @@ public class RegFacturas extends JDialog {
 								String second_p = separador[1];
 								aux = aux-Float.parseFloat(second_p);
 								total.setText(String.valueOf(Math.abs(aux)));
+								totalito = String.valueOf(Math.abs(aux));
 														
 							}
 						}
@@ -302,7 +317,12 @@ public class RegFacturas extends JDialog {
 							}
 							Factura factToAdd = new Factura(users, items, "1");
 							Empresa.getInstance().addFactura(factToAdd);
-							server(factToAdd);
+							convertirFactura(factToAdd);
+							try {
+								enviarFact(factToAdd);
+							} catch (Exception e2) {
+								e2.printStackTrace();
+							}
 							JOptionPane.showMessageDialog(null, "Compra realizada", "Notificacion", JOptionPane.INFORMATION_MESSAGE);
 							
 						}
@@ -327,36 +347,63 @@ public class RegFacturas extends JDialog {
 		}
 		
 	}
-	protected void server(Factura factToAdd) {
-		int port = 3000;
-		Socket sfd = null;
-		DataOutputStream salida = null;
-		String str = "";
-		String col_ID = "ID: " + factToAdd.getCod_fact();
-		String col_cliente = "Nombre: " + factToAdd.getP().getName();
-		String col_monto = "Monto: " + factToAdd.facturar(factToAdd.getItem());
-		String cols = col_ID + "\n" + col_cliente + "\n" + col_monto + "\n";
-		for (Queso cheese : factToAdd.getItem()) {
-			cols += cheese.getId() + "@@" + cheese.getTipo() + "@@" +Float.toString(factToAdd.facturarByEach(cheese));
-		}
+
+
+	public void convertirFactura(Factura factToAdd) {
+		File invoiceFile = new File (factToAdd.getCod_fact()+".txt");
+		FileWriter escritor;
+		BufferedWriter bufferWrite;
+		ArrayList<String> message = new ArrayList<String>();
 		try {
-			sfd = new Socket("127.0.0.1", port);
-			salida = new DataOutputStream(sfd.getOutputStream());
-			salida.writeBytes(cols+"n");
-			if (sfd.isInputShutdown() && sfd.isOutputShutdown()) {
-				sfd.close();
+			escritor = new FileWriter(invoiceFile); 
+			bufferWrite = new BufferedWriter(escritor); 
+			String separador = System.getProperty("line.separator");
+			message.add(separador+"*-------------------- Fabrica de Queso --------------------*");
+			message.add(separador+"* Cliente: "+factToAdd.getP().getName()+"                               *");
+			message.add(separador+"*---------------------------------------------------------*");
+			message.add(separador+"*----------------------- Quesos-----------------------*");
+			message.add(separador+"*---------------------------------------------------------*");
+			message.add(separador+"*  Descripcion           Cant.               Precio       *\n");
+			for (Queso cheese : factToAdd.getItem()) {
+				message.add("*  " +cheese.getId()+ cheese.getTipo() + String.valueOf(cheese.costoTotal()) + "\n");	
 			}
-		} catch (Exception e) {
-			System.err.format("Hubo un error inesperado.", e);
-		}
-		try {
-			if (sfd != null) {
-				sfd.close();
+			message.add("*---------------------------------------------------------*\n");
+			message.add("*TOTAL A PAGAR: RD$: "+ totalito +"\n");
+
+			
+			for (String text : message) {
+				bufferWrite.write(text);		
 			}
-		} catch (Exception ioe) {
-			System.err.format("Hubo un error inesperado.", ioe);
+
+			bufferWrite.flush();
+			bufferWrite.close();
+			escritor.close();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
+		
 	}
+public void enviarFact(Factura factToSend) throws IOException {
+		File factura = new File (factToSend.getCod_fact()+".txt");
+		salida.writeUTF(factToSend.getCod_fact());
+		salida.flush();
+		sendFile(factura);
+		factura.delete();
+	} 
+	
+public void sendFile(File file) throws IOException {
+	FileInputStream fileIn = new FileInputStream(file);
+	// convierte el fichero en bytes.
+	byte[] buf = new byte[Short.MAX_VALUE];
+	int bytesRead;        
+	while( (bytesRead = fileIn.read(buf)) != -1 ) {
+		salida.writeShort(bytesRead);
+		salida.write(buf,0,bytesRead);
+
+	}
+	salida.writeShort(-1);
+	fileIn.close();
+}
 
 	protected void updateQueso() {
 		dbQuesos.clear();

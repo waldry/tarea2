@@ -19,9 +19,9 @@ public class Empresa implements Serializable{
 	private ArrayList<Queso> cheese;
 	private ArrayList<Factura> fact;
 	private ArrayList<Cliente> user;
-	private static int gen_factura = 1;
-	private static int gen_cheese = 1;
-	private static int gen_user = 1;
+	public static int gen_factura = 1;
+	public static int gen_cheese = 1;
+	public static int gen_user = 1;
 	
 	private Empresa() {
 		super();
@@ -54,7 +54,7 @@ public class Empresa implements Serializable{
 	}
 
 	public void setGen_factura(int gen_factura) {
-		this.gen_factura = gen_factura;
+		Empresa.gen_factura = gen_factura;
 	}
 
 	public int getGen_user() {
@@ -62,7 +62,7 @@ public class Empresa implements Serializable{
 	}
 
 	public void setGen_user(int gen_user) {
-		this.gen_user = gen_user;
+		Empresa.gen_user = gen_user;
 	}
 
 	public int getGen_cheese() {
@@ -70,7 +70,7 @@ public class Empresa implements Serializable{
 	}
 
 	public void setGen_cheese(int gen_cheese) {
-		this.gen_cheese = gen_cheese;
+		Empresa.gen_cheese = gen_cheese;
 	}
 
 	public void addQueso(Queso cheeseToAdd) {
@@ -167,17 +167,17 @@ public class Empresa implements Serializable{
 	 // Para cargar los datos de la clase controladora.
     public void loadInitData(Empresa queseria) {
  
-        File file = new File("CheeseData.dat");
-        FileInputStream fileInput;
-        ObjectInputStream fileObjectInput;
+        File file = new File("DB.dat");
+        FileInputStream entrada;
+        ObjectInputStream archivoLeer;
         try {
-            fileInput = new FileInputStream (file);
-            fileObjectInput = new ObjectInputStream(fileInput);
- 
-            Empresa cheese = (Empresa) fileObjectInput.readObject();
-            Empresa.setEmp(cheese);
-            fileInput.close();
-            fileObjectInput.close();
+            entrada = new FileInputStream (file);
+//            fileObjectInput = new ObjectInputStream(fileInput);
+            archivoLeer = new ObjectInputStream(entrada);
+            Empresa temp = (Empresa)archivoLeer.readObject();
+            Empresa.setEmp(temp);
+            entrada.close();
+            archivoLeer.close();
  
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -188,34 +188,125 @@ public class Empresa implements Serializable{
         }
  
     }
+    public void readInvoiceCodes(int code, String name) {
+
+		File file = new File(name + ".dat");
+		FileInputStream fileInput;
+		ObjectInputStream fileObjectInput;
+
+		try {
+			fileInput = new FileInputStream (file);
+			fileObjectInput = new ObjectInputStream(fileInput);
+			gen_factura= (Integer) fileObjectInput.readObject();
+			fileInput.close();
+			fileObjectInput.close();
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public void readCheeseCodes(int code, String name) {
+
+		File file = new File(name + ".dat");
+		FileInputStream fileInput;
+		ObjectInputStream fileObjectInput;
+
+		try {
+			fileInput = new FileInputStream (file);
+			fileObjectInput = new ObjectInputStream(fileInput);
+
+			gen_cheese = (Integer) fileObjectInput.readObject();
+			fileInput.close();
+			fileObjectInput.close();
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+
+
+	}
+	public void readClientCodes(int code, String name) {
+
+		File file = new File(name + ".dat");
+		FileInputStream fileInput;
+		ObjectInputStream fileObjectInput;
+
+		try {
+			fileInput = new FileInputStream (file);
+			fileObjectInput = new ObjectInputStream(fileInput);
+
+			gen_user = (Integer) fileObjectInput.readObject();
+			fileInput.close();
+			fileObjectInput.close();
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+
+
+	}
 
 	// Para guardar los datos de la clase controladora.
     public void saveInitData(Empresa queso) {
        
-        File file = new File("CheeseData.dat");
-        FileOutputStream fileOutput;
-        ObjectOutputStream fileObjectOutput = null;
+        File file = new File("DB.dat");
+        FileOutputStream salida;
+        ObjectOutputStream archivoEscribir;
  
         try {
-            fileOutput = new FileOutputStream(file);
-            fileObjectOutput = new ObjectOutputStream(fileOutput);
-            fileObjectOutput.writeObject(queso);
-            fileOutput.close();
-            fileObjectOutput.close();
+            salida = new FileOutputStream(file);
+            archivoEscribir= new ObjectOutputStream(salida);
+            archivoEscribir.writeObject(Empresa.getInstance());
+            salida.close();
+            archivoEscribir.close();
  
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        }finally {
-            try {
-                fileObjectOutput.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
     }
+    public void writeCodes(int code, String name) {
 
+		File file = new File(name + ".dat");
+		FileOutputStream fileOutput;
+		ObjectOutputStream fileObjectOutput = null;
+
+		try {
+			fileOutput = new FileOutputStream(file);
+			fileObjectOutput = new ObjectOutputStream(fileOutput);
+			fileObjectOutput.writeObject(code);
+
+			fileOutput.close();
+			fileObjectOutput.close();
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				fileObjectOutput.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+//----------------------------------------------------
 	public static Empresa getEmp() {
 		return emp;
 	}
