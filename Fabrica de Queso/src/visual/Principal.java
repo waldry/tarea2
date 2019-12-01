@@ -80,8 +80,6 @@ public class Principal extends JFrame {
 	 * @param emp 
 	 */
 	public Principal() {
-		
-		
 		setTitle("Fabrica de Quesos");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		addWindowListener(new WindowAdapter() {
