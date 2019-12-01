@@ -26,7 +26,7 @@ public class Server extends Thread{
 				System.out.println("Esto me tiene cansado.");
 				String name = entrada.readUTF();
 				System.out.println(name);
-				
+				//
 				File ficheroSalida = new File("Facts/"+name+".txt");
 				receiveFile(ficheroSalida);
 				System.out.println("Archivo" +name+"Guardado correctamente.");
