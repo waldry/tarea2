@@ -23,7 +23,7 @@ public class Server extends Thread{
 			ServerSocket soc = new ServerSocket(port);
 			while(true) {
 				Setsockets(soc.accept());
-				System.out.println("Esto me tiene cansado.");
+				System.out.println("Conexion establecida");
 				String name = entrada.readUTF();
 				System.out.println(name);
 				//
